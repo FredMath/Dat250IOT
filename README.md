@@ -1,3 +1,3 @@
 # Dat250IOT
-DAT250 IOT Mandatory Project 2
+DAT250: Programming Assignment 2
 
