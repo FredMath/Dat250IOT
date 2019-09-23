@@ -4,8 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="IOTDevices")
-public class IOTDevice implements Serializable {
+@Table(name="Devices")
+@NamedQuery(name="Device.findAll", query="SELECT t FROM Device t")
+public class Device implements Serializable {
 private static final long serialVersionUID = 1;
 
     @TableGenerator(
@@ -27,6 +28,8 @@ private static final long serialVersionUID = 1;
     private boolean status;
 
     private int numberOfSubscriptions;
+
+    public static final String FIND_ALL = "Device.findAll";
 
 
     public int getId() {
