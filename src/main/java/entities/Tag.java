@@ -32,4 +32,14 @@ public class Tag {
         this.description = description;
     }
 
+    @ManyToOne(optional = false)
+    private entities.Device Device;
+
+    public entities.Device getDevice() {
+        return Device;
+    }
+
+    public void setDevice(entities.Device device) {
+        Device = device;
+    }
 }

@@ -44,4 +44,15 @@ public class Subscription {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @ManyToOne(optional = false)
+    private entities.Device Device;
+
+    public entities.Device getDevice() {
+        return Device;
+    }
+
+    public void setDevice(entities.Device device) {
+        Device = device;
+    }
 }

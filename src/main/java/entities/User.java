@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name="Users")
@@ -48,5 +49,16 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @OneToMany(mappedBy = "User")
+    private Collection<Device> Devices;
+
+    public Collection<Device> getDevices() {
+        return Devices;
+    }
+
+    public void setDevices(Collection<Device> devices) {
+        Devices = devices;
     }
 }

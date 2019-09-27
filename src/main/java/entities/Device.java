@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name="Devices")
@@ -100,5 +101,49 @@ private static final long serialVersionUID = 1;
                 ", status=" + status +
                 ", numberOfSubscriptions=" + numberOfSubscriptions +
                 '}';
+    }
+
+    @ManyToOne(optional = false)
+    private entities.User User;
+
+    public entities.User getUser() {
+        return User;
+    }
+
+    public void setUser(entities.User user) {
+        User = user;
+    }
+
+    @OneToMany(mappedBy = "Device")
+    private Collection<entities.Feedback> Feedback;
+
+    public Collection<entities.Feedback> getFeedback() {
+        return Feedback;
+    }
+
+    public void setFeedback(Collection<entities.Feedback> feedback) {
+        Feedback = feedback;
+    }
+
+    @OneToMany(mappedBy = "Device")
+    private Collection<Subscription> Subcriptions;
+
+    public Collection<Subscription> getSubcriptions() {
+        return Subcriptions;
+    }
+
+    public void setSubcriptions(Collection<Subscription> subcriptions) {
+        Subcriptions = subcriptions;
+    }
+
+    @OneToMany(mappedBy = "Device")
+    private Collection<Tag> Tags;
+
+    public Collection<Tag> getTags() {
+        return Tags;
+    }
+
+    public void setTags(Collection<Tag> tags) {
+        Tags = tags;
     }
 }
