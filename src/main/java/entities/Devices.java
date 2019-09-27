@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 @XmlRootElement
+@XmlSeeAlso(Device.class)
 public class Devices extends ArrayList<Device> {
 
     private static final long serialVersionUID = 1L;
