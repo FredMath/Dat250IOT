@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Table(name="Devices")
+@Table(name="Device")
 @NamedQuery(name="Device.findAll", query="SELECT t FROM Device t")
 public class Device implements Serializable {
 private static final long serialVersionUID = 1;
