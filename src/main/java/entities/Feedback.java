@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name="feedback")
@@ -13,7 +14,6 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy=GenerationType.TABLE,generator="yourTableGenerator")
     private int id;
-
     private String userName;
 
     private String comment;

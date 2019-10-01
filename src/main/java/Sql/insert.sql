@@ -1,4 +1,0 @@
-INSERT INTO USER(USERNAME, PASSWORD, FIRSTNAME, LASTNAME) values ->
- ("Bruker", "Passord", "Ola", "Nordmann")
-INSERT INTO DEVICE(ID, DEVICENAME, PICTUREURL, DEVICEURL, POWER, STATUS, NUMBEROFSUBSCRIPTIONS) values ->
- (1, "Ting", "url", "tingurl", "On", "Accepted", 0)

@@ -1,9 +1,9 @@
-Main.class
 entities\Feedback.class
-entities\Devices.class
 entities\Subscription.class
-entities\User.class
 entities\Tag.class
-entities\Device.class
 Helpers\Status.class
 Rest\RestService.class
+Main.class
+entities\Devices.class
+entities\User.class
+entities\Device.class
