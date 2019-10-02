@@ -1,11 +1,13 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
 @Table(name="feedback")
+@XmlRootElement
 public class Feedback {
     @TableGenerator(
             name = "yourTableGenerator",

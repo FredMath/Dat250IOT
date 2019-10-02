@@ -3,6 +3,7 @@ package ejb;
 import entities.Device;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.JMSConnectionFactory;
@@ -12,6 +13,7 @@ import javax.jms.JMSSessionMode;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,9 @@ import java.util.List;
 @Stateless
 public class DeviceDao {
 
-    @PersistenceContext(unitName = "test")
+    @PersistenceUnit(unitName = "test")
     private EntityManager em;
+
 
     public void persist(Device device) throws NamingException, JMSException {
         em.persist(device);

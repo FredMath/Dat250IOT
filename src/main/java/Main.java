@@ -1,3 +1,4 @@
+
 import entities.Device;
 import entities.User;
 
@@ -14,13 +15,13 @@ public class Main {
         EntityManager entityManager = factory.createEntityManager();
         User user = new User();
         user.setDevices(null);
-        user.setFirstName("Malik");
-        user.setLastName("Aasen");
-        user.setPassword("passord");
-        user.setUsername("malas");
+        user.setFirstName("Hogskulen");
+        user.setLastName("paa vestlandet");
+        user.setPassword("pass");
+        user.setUsername("hvl");
 
-        //entityManager.getTransaction().begin();
-        //entityManager.persist(user);
-        //entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
     }
 }

@@ -3,10 +3,12 @@ package entities;
 import Helpers.Status;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Date;
 
 @Entity
 @Table(name = "subscriptions")
+@XmlRootElement
 public class Subscription {
     @TableGenerator(
             name = "yourTableGenerator",
