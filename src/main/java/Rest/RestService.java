@@ -32,7 +32,7 @@ public class RestService {
     public Response getDevices() {
         TypedQuery<Device> query = em.createQuery(Device.FIND_ALL, Device.class);
         Devices devices = new Devices(query.getResultList());
-        em.close();
+        //em.close();
         return Response.ok(devices).build();
     }
 
@@ -40,12 +40,12 @@ public class RestService {
     @Path("{id}")
     @Produces({ "application/json", "application/xml" })
     public Response getDevice(@PathParam("id") String id) {
-        int deviceId = Integer.parseInt(id);
+        double deviceId = Integer.parseInt(id);
         Device device = em.find(Device.class, deviceId);
         if(device == null) {
             throw new NotFoundException();
         }
-        em.close();
+//        em.close();
         return Response.ok(device).build();
     }
 
