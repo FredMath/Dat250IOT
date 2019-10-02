@@ -1,10 +1,12 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
 
 @Entity
 @Table(name="Users")
+@XmlRootElement
 public class User {
     @TableGenerator(
             name = "yourTableGenerator",

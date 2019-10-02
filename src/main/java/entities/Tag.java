@@ -1,9 +1,11 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "tags")
+@XmlRootElement
 public class Tag {
 
     @TableGenerator(

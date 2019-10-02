@@ -1,12 +1,14 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @Table(name="Device")
-@NamedQuery(name="Device.findAll", query="SELECT t FROM Device t")
+@XmlRootElement
+@NamedQuery(name="Device.findAll", query="SELECT d FROM Device d")
 public class Device implements Serializable {
 private static final long serialVersionUID = 1;
 

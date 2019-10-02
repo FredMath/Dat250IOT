@@ -9,64 +9,65 @@ import entities.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.logging.Logger;
 import java.util.zip.DataFormatException;
 
 @Path("/devices")
 @Stateless
+@Produces({MediaType.APPLICATION_XML})
 public class RestService {
 
-    private EntityManager em;
-    private UriInfo uriInfo;
     @PersistenceContext(unitName = "test")
+    private EntityManager em;
+
+    private UriInfo uriInfo;
+    private Logger logger = Logger.getLogger(getClass().getName());
 
 
     @GET
-    @Produces({ "application/json", "application/xml" })
     public Response getDevices() {
-        TypedQuery<Device> query = em.createQuery(Device.FIND_ALL, Device.class);
+        TypedQuery<Device> query = em.createNamedQuery(Device.FIND_ALL, Device.class);
         Devices devices = new Devices(query.getResultList());
-        //em.close();
         return Response.ok(devices).build();
     }
 
     @GET
-    @Path("{id}")
-    @Produces({ "application/json", "application/xml" })
-    public Response getDevice(@PathParam("id") String id) {
-        double deviceId = Integer.parseInt(id);
+    @Path("/{id}")
+    public Device getDevice(@PathParam("id") String id) {
+        int deviceId = Integer.parseInt(id);
         Device device = em.find(Device.class, deviceId);
         if(device == null) {
             throw new NotFoundException();
         }
-//        em.close();
-        return Response.ok(device).build();
+        return device;
     }
 
     @GET
-    @Path("{id}/registrations")
-    @Produces({ "application/json", "application/xml" })
+    @Path("/{id}/registrations")
     public Response getDeviceRegistrations(@PathParam("id") String id) {
         int deviceId = Integer.parseInt(id);
         Device device = em.find(Device.class, deviceId);
         if(device.getSubcriptions() == null) {
             throw new NotFoundException();
         }
-        em.close();
         return Response.ok(device.getSubcriptions()).build();
     }
 
     @GET
-    @Path("{id}/registrations/{rid}")
-    @Produces({ "application/json", "application/xml" })
+    @Path("/{id}/registrations/{rid}")
     public Response getDeviceRegistration(@PathParam("id") String id, @PathParam("rid") String regId) {
         int deviceId = Integer.parseInt(id);
+        logger.info(id);
         int registrationId = Integer.parseInt(regId);
         Device device = em.find(Device.class, deviceId);
         Subscription subscription = null;
@@ -78,27 +79,23 @@ public class RestService {
         if(subscription == null) {
             throw new NotFoundException();
         }
-        em.close();
         return Response.ok(subscription).build();
     }
 
 
     @POST
-    @Path("{id}")
+    @Path("/{id}")
     @Consumes({ "application/json", "application/xml" })
-    @Produces({ "application/json", "application/xml" })
     public Response setDevice(@PathParam("id") String id, User user) {
         int deviceId = Integer.parseInt(id);
         Device device = em.find(Device.class, deviceId);
+
         Subscription subscription = new Subscription();
         Date date = new Date(System.currentTimeMillis());
         subscription.setDevice(device);
         subscription.setDate(date);
         subscription.setStatus(Status.PENDING);
-        em.getTransaction().begin();
         em.persist(subscription);
-        em.getTransaction().commit();
-        em.close();
         URI subURI = uriInfo.getAbsolutePathBuilder().path(Integer.toString(subscription.getId())).build();
 
         return Response.created(subURI).build();
