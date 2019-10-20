@@ -1,6 +1,6 @@
 package Rest;
 
-import Helpers.Status;
+import Utils.Status;
 import entities.Device;
 import entities.Devices;
 import entities.Subscription;
@@ -9,18 +9,14 @@ import entities.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.logging.Logger;
-import java.util.zip.DataFormatException;
 
 @Path("/devices")
 @Stateless
