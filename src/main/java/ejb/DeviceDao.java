@@ -1,6 +1,7 @@
 package ejb;
 
 import entities.Device;
+import entities.User;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -37,4 +38,11 @@ public class DeviceDao {
         return devices;
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Device> getUsersDevices(User user) {
+        Query query = em.createQuery("SELECT t FROM Device t WHERE user=user");
+        List<Device> devices = new ArrayList<Device>();
+        devices = query.getResultList();
+        return devices;
+    }
 }
