@@ -1,5 +1,6 @@
 package ejb;
 
+import Utils.SessionUtils;
 import entities.Device;
 
 import javax.ejb.EJB;
@@ -19,6 +20,7 @@ public class DeviceController implements Serializable {
     private static final long serialVersionUID = 1L;
     @EJB
     private DeviceDao deviceDao;
+    private UserDao userDao;
 
     private Device device;
 
@@ -27,19 +29,17 @@ public class DeviceController implements Serializable {
         reverseDeviceList.addAll(this.deviceDao.getAllDevices());
         Collections.reverse(reverseDeviceList);
         return reverseDeviceList;
+    }
 
+    public List<Device> getUsersDevices() {
+        List<Device> reverseDeviceList = new ArrayList<Device>();
+        String username = SessionUtils.getUserName();
+        reverseDeviceList.addAll(this.deviceDao.getUsersDevices(userDao.getUserByUsername(username)));
+        return reverseDeviceList;
     }
 
     public void saveDevice(Device device) throws NamingException, JMSException {
         this.deviceDao.persist(this.device);
-    }
-
-    public Device getTweet() {
-        if (this.device == null) {
-            device = new Device();
-        }
-        return device;
-
     }
 
 }
