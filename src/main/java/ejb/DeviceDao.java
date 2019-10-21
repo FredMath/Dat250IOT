@@ -1,6 +1,7 @@
 package ejb;
 
 import entities.Device;
+import entities.Tag;
 import entities.User;
 
 import javax.annotation.Resource;
@@ -40,7 +41,18 @@ public class DeviceDao {
 
     @SuppressWarnings("unchecked")
     public List<Device> getUsersDevices(User user) {
-        Query query = em.createQuery("SELECT t FROM Device t WHERE user=user");
+        Query query = (Query) em.createQuery("SELECT t FROM Device t WHERE t.user_username LIKE :userName")
+                .setParameter("userName", user.getUsername()).getResultList();
+        List<Device> devices = new ArrayList<Device>();
+        devices = query.getResultList();
+        return devices;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Device> getDevicesByTags(String tagString) {
+        Tag tags = em.find(Tag.class, tagString);
+        Query query = (Query) em.createQuery("SELECT t FROM Device t WHERE t.tags LIKE :tagName")
+                .setParameter("tagName", tagString).getResultList();
         List<Device> devices = new ArrayList<Device>();
         devices = query.getResultList();
         return devices;
