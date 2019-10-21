@@ -1,6 +1,6 @@
 package entities;
 
-import Helpers.Status;
+import Utils.Status;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
