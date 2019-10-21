@@ -26,7 +26,7 @@ public class FeedbackDao {
 
     public List<Feedback> getFeedbackForDevice(Device device){
         Query query = (Query) em.createQuery("SELECT t FROM Feedback t WHERE t.device_id LIKE :deviceid")
-                .setParameter("deviceid", device.getId()).getResultList();
+                .setParameter("deviceid", device.getId());
         List<Feedback> feedbackList = new ArrayList<Feedback>();
         feedbackList = query.getResultList();
 

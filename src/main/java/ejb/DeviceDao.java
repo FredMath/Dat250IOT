@@ -42,7 +42,7 @@ public class DeviceDao {
     @SuppressWarnings("unchecked")
     public List<Device> getUsersDevices(User user) {
         Query query = (Query) em.createQuery("SELECT t FROM Device t WHERE t.user_username LIKE :userName")
-                .setParameter("userName", user.getUsername()).getResultList();
+                .setParameter("userName", user.getUsername());
         List<Device> devices = new ArrayList<Device>();
         devices = query.getResultList();
         return devices;
@@ -52,7 +52,7 @@ public class DeviceDao {
     public List<Device> getDevicesByTags(String tagString) {
         Tag tags = em.find(Tag.class, tagString);
         Query query = (Query) em.createQuery("SELECT t FROM Device t WHERE t.tags LIKE :tagName")
-                .setParameter("tagName", tagString).getResultList();
+                .setParameter("tagName", tagString);
         List<Device> devices = new ArrayList<Device>();
         devices = query.getResultList();
         return devices;
