@@ -21,6 +21,7 @@ public class DeviceController implements Serializable {
     @EJB
     private DeviceDao deviceDao;
     private UserDao userDao;
+    private TagsDao tagsDao;
     private Device device;
 
     public List<Device> getDevices() {
@@ -43,7 +44,7 @@ public class DeviceController implements Serializable {
 
     public List<Device> getDevicesByTags(String tag) {
         List<Device> reverseDeviceList = new ArrayList<Device>();
-        reverseDeviceList.addAll(this.deviceDao.getDevicesByTags(tag));
+        reverseDeviceList.addAll(this.tagsDao.getDevicesByTags(tag));
         return reverseDeviceList;
     }
 
