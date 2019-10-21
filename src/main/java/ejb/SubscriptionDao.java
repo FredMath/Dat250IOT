@@ -9,6 +9,7 @@ import javax.jms.JMSException;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 
 @Stateless
 public class SubscriptionDao {
@@ -22,7 +23,7 @@ public class SubscriptionDao {
 
     @SuppressWarnings("unchecked")
     public void Subscribe(Device device, User user) {
-
+       // Query query = em.createQuery("SELECT ")
     }
 
     @SuppressWarnings("unchecked")

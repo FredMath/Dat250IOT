@@ -57,4 +57,12 @@ public class Subscription {
     public void setDevice(entities.Device device) {
         Device = device;
     }
+
+    @ManyToOne(optional = false)
+    private entities.User User;
+
+    public entities.User getUser() {return User;}
+
+    public void setUser(entities.User user) {User = user;}
+
 }

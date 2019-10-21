@@ -63,4 +63,11 @@ public class User {
     public void setDevices(Collection<Device> devices) {
         Devices = devices;
     }
+
+    @OneToMany(mappedBy = "User")
+    private Collection<Subscription> Subscription;
+
+    public Collection<Subscription> getSubscriptions(){return Subscription;}
+
+    public void setSubscription(Collection<Subscription> subscription) {Subscription = subscription;}
 }
