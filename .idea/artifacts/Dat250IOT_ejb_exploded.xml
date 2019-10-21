@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="Dat250IOT:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Dat250IOT_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Dat250IOT/ejb/EJB" />
+      <element id="module-output" name="Dat250IOT" />
+    </root>
+  </artifact>
+</component>
