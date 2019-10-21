@@ -13,7 +13,7 @@ import javax.persistence.Query;
 @Stateless
 public class UserDao {
 
-    @PersistenceUnit(unitName = "User")
+    @PersistenceUnit(unitName = "test")
     private EntityManager em;
 
     public void persist(User user) throws NamingException, JMSException {
