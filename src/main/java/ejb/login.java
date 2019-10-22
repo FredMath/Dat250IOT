@@ -2,6 +2,7 @@ package ejb;
 
 import Utils.SessionUtils;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -18,8 +19,8 @@ public class login implements Serializable {
     private String pwd;
     private String msg;
     private String user;
-
-    LoginDAO loginDAO = new LoginDAO();
+    @EJB
+    LoginDAO loginDAO;
 
     public String getPwd() {
         return pwd;

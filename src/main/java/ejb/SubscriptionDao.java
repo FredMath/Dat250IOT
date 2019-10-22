@@ -24,7 +24,7 @@ public class SubscriptionDao {
 
     @SuppressWarnings("unchecked") //tror persist funker for subscribe?
     public void Subscribe(Device device, User user) {
-       // Query query = em.createQuery("SELECT ")
+        //Query query = em.createQuery("UPDATE ")
     }
 
     @SuppressWarnings("unchecked")
