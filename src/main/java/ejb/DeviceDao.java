@@ -47,4 +47,9 @@ public class DeviceDao {
         devices = query.getResultList();
         return devices;
     }
+
+    public void deleteDevice(Device device) {
+        Query query = em.createQuery("DELETE FROM Device t WHERE t.device.id LIKE ?1")
+                .setParameter(1, device.getId());
+    }
 }

@@ -2,6 +2,7 @@ package ejb;
 
 import Utils.SessionUtils;
 import entities.Device;
+import entities.Feedback;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -22,6 +23,7 @@ public class DeviceController implements Serializable {
     private DeviceDao deviceDao;
     private UserDao userDao;
     private TagsDao tagsDao;
+    private FeedbackDao feedbackDao;
 
     public List<Device> getDevices() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
@@ -45,5 +47,15 @@ public class DeviceController implements Serializable {
         List<Device> reverseDeviceList = new ArrayList<Device>();
         reverseDeviceList.addAll(this.tagsDao.getDevicesByTags(tag));
         return reverseDeviceList;
+    }
+
+    public List<Feedback> getFeedbackForDevice(Device device) {
+        List<Feedback> reverseDeviceList = new ArrayList<Feedback>();
+        reverseDeviceList.addAll(this.feedbackDao.getFeedbackForDevice(device));
+        return reverseDeviceList;
+    }
+
+    public void deleteDevice(Device device){
+        deviceDao.deleteDevice(device);
     }
 }
