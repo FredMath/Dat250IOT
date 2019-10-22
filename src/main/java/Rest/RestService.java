@@ -30,12 +30,12 @@ public class RestService {
     private Logger logger = Logger.getLogger(getClass().getName());
 
 
-    @GET
+   /* @GET
     public Response getDevices() {
         TypedQuery<Device> query = em.createNamedQuery(Device.FIND_ALL, Device.class);
         Devices devices = new Devices(query.getResultList());
         return Response.ok(devices).build();
-    }
+    }*/
 
     @GET
     @Path("/{id}")
