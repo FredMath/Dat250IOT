@@ -12,7 +12,8 @@ public class LoginDAO {
     private EntityManager em;
 
     public boolean validate(String uname, String pwd) {
-        Query query =  em.createNativeQuery("select user from users where password = " + pwd + " and username = " + uname, User.class);
+        Query query =  em.createNativeQuery("SELECT u FROM users u WHERE u.password = ?1 and u.username = ?2")
+                .setParameter(1, pwd).setParameter(2, uname);
         User user = (User) query.getSingleResult();
         if(user != null) {
             return true;
