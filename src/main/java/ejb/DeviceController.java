@@ -22,7 +22,6 @@ public class DeviceController implements Serializable {
     private DeviceDao deviceDao;
     private UserDao userDao;
     private TagsDao tagsDao;
-    private Device device;
 
     public List<Device> getDevices() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
@@ -39,7 +38,7 @@ public class DeviceController implements Serializable {
     }
 
     public void saveDevice(Device device) throws NamingException, JMSException {
-        this.deviceDao.persist(this.device);
+        this.deviceDao.persist(device);
     }
 
     public List<Device> getDevicesByTags(String tag) {
@@ -47,5 +46,4 @@ public class DeviceController implements Serializable {
         reverseDeviceList.addAll(this.tagsDao.getDevicesByTags(tag));
         return reverseDeviceList;
     }
-
 }

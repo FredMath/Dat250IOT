@@ -1,5 +1,6 @@
 package ejb;
 
+import Utils.Status;
 import entities.Device;
 import entities.Subscription;
 import entities.User;
@@ -21,14 +22,20 @@ public class SubscriptionDao {
         em.persist(subscription);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") //tror persist funker for subscribe?
     public void Subscribe(Device device, User user) {
        // Query query = em.createQuery("SELECT ")
     }
 
     @SuppressWarnings("unchecked")
     public void Unsubscribe(Device device, User user) {
+        Query query = em.createQuery("DELETE FROM Subscriptions t WHERE t.device.id LIKE ?1 AND t.user_username LIKE ?2")
+                .setParameter(1, device.getId()).setParameter(2, user.getUsername());
+    }
 
+    public void changeStatus(Subscription subscription, Status newStatus){
+        Query query = em.createQuery("UPDATE Subscriptions t SET t.status = ?1 WHERE t.id LIKE ?2")
+                .setParameter(1, newStatus).setParameter(2, subscription.getId());
     }
 
 }
