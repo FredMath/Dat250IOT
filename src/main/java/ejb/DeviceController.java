@@ -58,4 +58,8 @@ public class DeviceController implements Serializable {
     public void deleteDevice(Device device){
         deviceDao.deleteDevice(device);
     }
+
+    public void changePower(Device device, boolean power){
+        deviceDao.changePower(device, power);
+    }
 }

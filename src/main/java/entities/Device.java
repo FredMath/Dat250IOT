@@ -28,8 +28,6 @@ private static final long serialVersionUID = 1;
 
     private boolean power;
 
-    private boolean status;
-
     private int numberOfSubscriptions;
 
     public static final String FIND_ALL = "Device.findAll";
@@ -76,14 +74,6 @@ private static final long serialVersionUID = 1;
         this.power = power;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public int getNumberOfSubscriptions() {
         return numberOfSubscriptions;
     }
@@ -100,7 +90,6 @@ private static final long serialVersionUID = 1;
                 ", pictureURL='" + pictureURL + '\'' +
                 ", deviceURL='" + deviceURL + '\'' +
                 ", power=" + power +
-                ", status=" + status +
                 ", numberOfSubscriptions=" + numberOfSubscriptions +
                 '}';
     }

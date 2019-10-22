@@ -36,6 +36,13 @@ public class SubscriptionController implements Serializable {
     }
 
     public void changeStatus(Subscription subscription, Status newStatus){
-        subscriptionDao.changeStatus(subscription, newStatus);
+        int status = 0;
+
+        if (newStatus == Status.ACCEPTED) {
+            status = 1;
+        } else if (newStatus == Status.DENIED) {
+            status = 2;
+        }
+        subscriptionDao.changeStatus(subscription, status);
     }
 }

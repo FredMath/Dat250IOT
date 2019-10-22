@@ -33,9 +33,8 @@ public class SubscriptionDao {
                 .setParameter(1, device.getId()).setParameter(2, user.getUsername());
     }
 
-    public void changeStatus(Subscription subscription, Status newStatus){
+    public void changeStatus(Subscription subscription, int status){
         Query query = em.createQuery("UPDATE Subscriptions t SET t.status = ?1 WHERE t.id LIKE ?2")
-                .setParameter(1, newStatus).setParameter(2, subscription.getId());
+                .setParameter(1, status).setParameter(2, subscription.getId());
     }
-
 }
