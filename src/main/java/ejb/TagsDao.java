@@ -5,6 +5,7 @@ import entities.Tag;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 @Stateless
 public class TagsDao {
 
-    @PersistenceUnit(unitName = "test")
+    @PersistenceContext(unitName = "test")
     private EntityManager em;
 
     @SuppressWarnings("unchecked")

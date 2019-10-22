@@ -17,18 +17,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
 public class DeviceDao {
 
-    @PersistenceUnit(unitName = "test")
+    @PersistenceContext(unitName = "test")
     private EntityManager em;
 
 
     public void persist(Device device) throws NamingException, JMSException {
         em.persist(device);
+    }
+
+    public Device getDevice(int id) {
+        Device device = em.find(Device.class, id);
+        if (device == null)
+            throw new NotFoundException();
+        return device;
     }
 
     @SuppressWarnings("unchecked")

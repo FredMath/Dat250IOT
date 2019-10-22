@@ -12,12 +12,11 @@ public class LoginDAO {
     private EntityManager em;
 
     public boolean validate(String uname, String pwd) {
-        Query query = em.createQuery("SELECT u FROM users u WHERE u.password = passord and u.username = malas");
+        // TypedQuery<User> query = em.createQuery("SELECT u FROM users u WHERE u.password = passord and u.username = malas", User.class);
 
-        // TypedQuery<User> query = em.createQuery("SELECT u FROM users u WHERE u.password = ?1 and u.username = ?2")
-       // em.createQuery("select user from users where user.password = " + pwd + " and user.username = " + uname, User.class);
-                //.setParameter(1, pwd).setParameter(2, uname);
-        User user = (User) query.getSingleResult();
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.password = ?1 and u.Username = ?2", User.class)
+                .setParameter(1, pwd).setParameter(2, uname);
+        User user = query.getSingleResult();
         if(user != null) {
             return true;
         } else {

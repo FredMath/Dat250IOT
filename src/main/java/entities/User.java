@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
 
 @Entity
@@ -53,6 +54,7 @@ public class User {
         this.lastName = lastName;
     }
 
+    @XmlTransient
     @OneToMany(mappedBy = "User")
     private Collection<Device> Devices;
 
@@ -64,6 +66,7 @@ public class User {
         Devices = devices;
     }
 
+    @XmlTransient
     @OneToMany(mappedBy = "User")
     private Collection<Subscription> Subscription;
 

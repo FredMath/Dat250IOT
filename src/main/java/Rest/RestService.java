@@ -1,16 +1,20 @@
 package Rest;
 
 import Utils.Status;
+import ejb.DeviceDao;
 import entities.Device;
 import entities.Devices;
 import entities.Subscription;
 import entities.User;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -19,36 +23,41 @@ import java.sql.Date;
 import java.util.logging.Logger;
 
 @Path("/devices")
-@Stateless
-@Produces({MediaType.APPLICATION_XML})
-public class RestService {
+//@Produces({MediaType.APPLICATION_XML})
+public class RestService extends Application {
 
-    @PersistenceContext(unitName = "test")
-    private EntityManager em;
+//    @PersistenceUnit(unitName = "test")
+//    private EntityManager em;
 
-    private UriInfo uriInfo;
+    @EJB
+    private DeviceDao deviceDao;
+
+    //   private UriInfo uriInfo;
     private Logger logger = Logger.getLogger(getClass().getName());
 
 
     @GET
+    @Produces(MediaType.APPLICATION_XML)
     public Response getDevices() {
-        TypedQuery<Device> query = em.createNamedQuery(Device.FIND_ALL, Device.class);
-        Devices devices = new Devices(query.getResultList());
-        return Response.ok(devices).build();
+        //TypedQuery<Device> query = em.createNamedQuery(Device.FIND_ALL, Device.class);
+        //Devices devices = new Devices(query.getResultList());
+
+        return Response.ok(deviceDao.getAllDevices()).build();
     }
 
-    @GET
-    @Path("/{id}")
+    /*@GET
+    @Produces(MediaType.APPLICATION_XML)
+    @Path("{id}")
     public Device getDevice(@PathParam("id") String id) {
         int deviceId = Integer.parseInt(id);
-        Device device = em.find(Device.class, deviceId);
+        Device device = deviceDao.getDevice(deviceId);
         if(device == null) {
             throw new NotFoundException();
         }
         return device;
-    }
+    }*/
 
-    @GET
+    /*@GET
     @Path("/{id}/registrations")
     public Response getDeviceRegistrations(@PathParam("id") String id) {
         int deviceId = Integer.parseInt(id);
@@ -95,7 +104,7 @@ public class RestService {
         URI subURI = uriInfo.getAbsolutePathBuilder().path(Integer.toString(subscription.getId())).build();
 
         return Response.created(subURI).build();
-    }
+    }*/
 
 
 

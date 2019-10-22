@@ -1,7 +1,9 @@
 package entities;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -93,7 +95,6 @@ private static final long serialVersionUID = 1;
                 ", numberOfSubscriptions=" + numberOfSubscriptions +
                 '}';
     }
-
     @ManyToOne(optional = false)
     private entities.User User;
 
@@ -105,6 +106,7 @@ private static final long serialVersionUID = 1;
         User = user;
     }
 
+    @XmlTransient
     @OneToMany(mappedBy = "Device")
     private Collection<entities.Feedback> Feedback;
 
@@ -116,6 +118,7 @@ private static final long serialVersionUID = 1;
         Feedback = feedback;
     }
 
+    @XmlTransient
     @OneToMany(mappedBy = "Device")
     private Collection<Subscription> Subcriptions;
 
@@ -127,6 +130,7 @@ private static final long serialVersionUID = 1;
         Subcriptions = subcriptions;
     }
 
+    @XmlTransient
     @OneToMany(mappedBy = "Device")
     private Collection<Tag> Tags;
 

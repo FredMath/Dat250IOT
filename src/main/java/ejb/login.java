@@ -3,6 +3,7 @@ package ejb;
 import Utils.SessionUtils;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -10,8 +11,8 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
-@Named("login")
-@SessionScoped
+@Named(value = "login")
+@RequestScoped
 public class login implements Serializable {
 
     private static final long serialVersionUID = 1094801825228386363L;
@@ -20,7 +21,7 @@ public class login implements Serializable {
     private String msg;
     private String user;
     @EJB
-    LoginDAO loginDAO;
+    private LoginDAO loginDAO;
 
     public String getPwd() {
         return pwd;

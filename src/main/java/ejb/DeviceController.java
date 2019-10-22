@@ -5,6 +5,7 @@ import entities.Device;
 import entities.Feedback;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.jms.JMSException;
@@ -15,14 +16,17 @@ import java.util.Collections;
 import java.util.List;
 
 @Named(value = "deviceController")
-@SessionScoped
+@RequestScoped
 public class DeviceController implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EJB
     private DeviceDao deviceDao;
+    @EJB
     private UserDao userDao;
+    @EJB
     private TagsDao tagsDao;
+    @EJB
     private FeedbackDao feedbackDao;
 
     public List<Device> getDevices() {

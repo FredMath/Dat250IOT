@@ -7,6 +7,7 @@ import entities.Subscription;
 import entities.User;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.jms.JMSException;
@@ -14,15 +15,19 @@ import javax.naming.NamingException;
 import java.io.Serializable;
 
 @Named(value = "subscriptionController")
-@SessionScoped
+@RequestScoped
 public class SubscriptionController implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EJB
     private DeviceDao deviceDao;
+    @EJB
     private UserDao userDao;
+    @EJB
     private TagsDao tagsDao;
+    @EJB
     private SubscriptionDao subscriptionDao;
+
     private Device device;
 
     public void Subscribe(Subscription subscription) throws NamingException, JMSException {

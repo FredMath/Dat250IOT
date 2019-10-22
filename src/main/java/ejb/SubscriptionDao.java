@@ -9,13 +9,14 @@ import javax.ejb.Stateless;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 @Stateless
 public class SubscriptionDao {
 
-    @PersistenceUnit(unitName = "test")
+    @PersistenceContext(unitName = "test")
     private EntityManager em;
 
     public void persist(Subscription subscription) throws NamingException, JMSException {
