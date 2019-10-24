@@ -10,20 +10,42 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Device Administrative Screen</title>
 </h:head>
 
 <h:body>
-    <h:form>
-        <ui:repeat value="#{deviceController.usersDevices}" var="device">
-            <h:outputText value="#{device.toString()}"></h:outputText>
-            <br></br>
-        </ui:repeat>
-    </h:form>
-    
+    <h:dataTable value="#{deviceController.usersDevices}" var="device">
+        <h:column>
+            <f:facet name="header">Device Id</f:facet>
+            #{device.id}
+        </h:column>
+        
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{device.deviceName}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">URL</f:facet>
+            #{device.deviceURL}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Power</f:facet>
+            #{device.power}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Nr subscriptions</f:facet>
+            #{device.numberOfSubscriptions}
+        </h:column>
+
+    </h:dataTable>
+
 </h:body>
 
 </html>
