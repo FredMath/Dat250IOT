@@ -45,8 +45,8 @@ public class RestService extends Application {
         return Response.ok(deviceDao.getAllDevices()).build();
     }
 
-    /*@GET
-    @Produces(MediaType.APPLICATION_XML)
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public Device getDevice(@PathParam("id") String id) {
         int deviceId = Integer.parseInt(id);
@@ -55,7 +55,7 @@ public class RestService extends Application {
             throw new NotFoundException();
         }
         return device;
-    }*/
+    }
 
     /*@GET
     @Path("/{id}/registrations")

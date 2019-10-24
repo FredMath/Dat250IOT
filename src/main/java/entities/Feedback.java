@@ -54,7 +54,7 @@ public class Feedback {
         this.date = date;
     }
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private entities.Device Device;
 
     public entities.Device getDevice() {

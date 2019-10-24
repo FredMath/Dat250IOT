@@ -2,6 +2,7 @@ package entities;
 
 import Utils.Status;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Date;
@@ -47,7 +48,8 @@ public class Subscription {
         this.date = date;
     }
 
-    @ManyToOne(optional = false)
+    @JsonbTransient
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private entities.Device Device;
 
     public entities.Device getDevice() {
@@ -58,7 +60,8 @@ public class Subscription {
         Device = device;
     }
 
-    @ManyToOne(optional = false)
+    @JsonbTransient
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private entities.User User;
 
     public entities.User getUser() {return User;}
