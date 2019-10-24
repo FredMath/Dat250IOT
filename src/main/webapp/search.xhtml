@@ -21,11 +21,12 @@
 <h:body>
     <h:inputText id="searchDevice" value="#{deviceController.tag}"></h:inputText>
     <h:message for="searchDevice"></h:message>
-    <h:commandButton action="#{devices.setDevices(deviceController.getDevicesByTags())}" value="search" update="@form"></h:commandButton>
-
+    <h:commandButton type="button" action="#{deviceController.devicesByTags}" value="Search" update="form"></h:commandButton>
+    <h:button onclick="#{deviceController.devicesByTags}"></h:button>
+    <h:commandLink action="searched" value="searched"></h:commandLink>
     <h:panelGroup id="panel">
-    <h:form>
-        <ui:repeat value="#{devices.devices}" var="device">
+    <h:form id="form">
+        <ui:repeat value="#{deviceController.deviceList}" var="device">
             <h:outputText value="#{device.toString()}"></h:outputText>
         </ui:repeat>
     </h:form>

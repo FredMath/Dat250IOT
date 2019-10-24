@@ -23,7 +23,9 @@ public class TagsDao {
                 .setParameter("tagName", tagString);
         List<Device> device_id = new ArrayList<Device>();
         device_id = query.getResultList();
-
+        for(Device device : device_id) {
+            System.out.println(device.getDeviceName());
+        }
 //        List<Device> devices = new ArrayList<Device>();
 //        for(int i = 0; i < device_id.size(); i++){
 //            Device d = em.find(Device.class, device_id.get(i));

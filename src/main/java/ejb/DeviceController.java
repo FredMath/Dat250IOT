@@ -3,10 +3,12 @@ package ejb;
 import Utils.SessionUtils;
 import entities.Device;
 import entities.Feedback;
+import entities.Tag;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
@@ -16,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Named(value = "deviceController")
-@RequestScoped
+@SessionScoped
 public class DeviceController implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,12 +32,22 @@ public class DeviceController implements Serializable {
     private FeedbackDao feedbackDao;
     private String tag;
 
+    private List<Device> deviceList;
+
     public void setTag(String tag) {
         this.tag = tag;
     }
 
     public String getTag() {
         return tag;
+    }
+
+    public List<Device> getDeviceList() {
+        return deviceList;
+    }
+
+    public void setDeviceList(List<Device> deviceList) {
+        this.deviceList = deviceList;
     }
 
     public DeviceController() {
@@ -62,6 +74,9 @@ public class DeviceController implements Serializable {
     public List<Device> getDevicesByTags() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
         reverseDeviceList.addAll(this.tagsDao.getDevicesByTags(this.tag));
+        System.out.print(reverseDeviceList.size());
+        System.out.print(this.tag);
+        this.deviceList = reverseDeviceList;
         return reverseDeviceList;
     }
 
