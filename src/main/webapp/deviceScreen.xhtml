@@ -10,19 +10,43 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Device Administrative Screen</title>
 </h:head>
 
 <h:body>
-    <h:form>
-        <ui:repeat value="#{deviceController.usersDevices}" var="device">
+    <h:dataTable value="#{deviceController.usersDevices}" var="device">
+        <h:column>
+            <f:facet name="Header">Device Id</f:facet>
+            #{device.id}
+        </h:column>
+        
+        <h:column>
+            <f:facet name="Header">Name</f:facet>
+            #{device.deviceName}
+        </h:column>
+        <h:column>
+            <f:facet name="Header">URL</f:facet>
+            #{device.deviceURL}
+        </h:column>
+
+        <h:column>
+            <f:facet name="Header">Power</f:facet>
+            #{device.power}
+        </h:column>
+
+        <h:column>
+            <f:facet name="Header">Nr subscriptions</f:facet>
+            #{device.subcriptions}
+        </h:column>
+        <!--<ui:repeat value="#{deviceController.usersDevices}" var="device">
             <h:outputText value="#{device.toString()}"></h:outputText>
             <br></br>
-        </ui:repeat>
-    </h:form>
+        </ui:repeat>-->
+    </h:dataTable>
     
 </h:body>
 

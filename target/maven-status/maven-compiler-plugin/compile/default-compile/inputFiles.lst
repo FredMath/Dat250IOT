@@ -1,11 +1,21 @@
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\Rest\RestService.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\entities\Device.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\ApplicationConfig.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\Helpers\Status.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\entities\Devices.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\entities\Tag.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\ejb\DeviceDao.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\entities\Feedback.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\entities\Subscription.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\entities\User.java
-C:\Users\malik\dat250assignments\Dat250IOT\src\main\java\ejb\DeviceController.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\entities\Feedback.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\DeviceBean.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\DeviceController.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\UserDao.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\entities\Tag.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\TagsDao.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ApplicationConfig.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\Rest\RestService.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\Rest\AuthorizationFilter.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\entities\Subscription.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\entities\Devices.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\LoginDAO.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\FeedbackDao.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\SubscriptionDao.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\login.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\DeviceDao.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\ejb\SubscriptionController.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\Utils\SessionUtils.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\entities\Device.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\entities\User.java
+C:\Users\Fredrik Mathisen\Documents\DAT250\Dat250IOT\src\main\java\Utils\Status.java
