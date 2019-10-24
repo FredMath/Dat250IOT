@@ -31,6 +31,13 @@
         </ui:repeat>
     </h:form>
     </h:panelGroup>
+
+    <h:dataTable value="#{deviceController.devicesByTags}" var="device">
+        <h:column>
+            <c:facet name="header">tag</c:facet>
+            #{device.tags}
+        </h:column>
+    </h:dataTable>
 </h:body>
 
 </html>
