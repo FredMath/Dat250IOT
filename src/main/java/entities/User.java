@@ -1,5 +1,6 @@
 package entities;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -54,8 +55,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    @XmlTransient
-    @OneToMany(mappedBy = "User")
+    @JsonbTransient
+    @OneToMany(mappedBy = "User", fetch = FetchType.LAZY)
     private Collection<Device> Devices;
 
     public Collection<Device> getDevices() {
@@ -66,8 +67,8 @@ public class User {
         Devices = devices;
     }
 
-    @XmlTransient
-    @OneToMany(mappedBy = "User")
+    @JsonbTransient
+    @OneToMany(mappedBy = "User", fetch = FetchType.EAGER)
     private Collection<Subscription> Subscription;
 
     public Collection<Subscription> getSubscriptions(){return Subscription;}
