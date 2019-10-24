@@ -1,6 +1,7 @@
 package ejb;
 
 import Utils.SessionUtils;
+import entities.User;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -10,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.util.List;
 
 @Named(value = "login")
 @RequestScoped
@@ -49,6 +51,7 @@ public class login implements Serializable {
 
     public String validateUser() {
         boolean valid = loginDAO.validate(user, pwd);
+        //boolean valid = brukerFinnes(this.loginDAO.getAll(), user, pwd);
         if(valid) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
@@ -59,9 +62,19 @@ public class login implements Serializable {
         }
     }
 
+    public boolean brukerFinnes(List<User> users, String user, String pwd) {
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getUsername() == user && users.get(i).getPassword() == pwd) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
-        return "logout";
+        return "login";
     }
 }

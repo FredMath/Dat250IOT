@@ -28,6 +28,15 @@ public class DeviceController implements Serializable {
     private TagsDao tagsDao;
     @EJB
     private FeedbackDao feedbackDao;
+    private String tag;
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getTag() {
+        return tag;
+    }
 
     public List<Device> getDevices() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
@@ -47,16 +56,23 @@ public class DeviceController implements Serializable {
         this.deviceDao.persist(device);
     }
 
-    public List<Device> getDevicesByTags(String tag) {
+    public List<Device> getDevicesByTags() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
-        reverseDeviceList.addAll(this.tagsDao.getDevicesByTags(tag));
+        reverseDeviceList.addAll(this.tagsDao.getDevicesByTags(this.tag));
         return reverseDeviceList;
     }
 
     public List<Feedback> getFeedbackForDevice(Device device) {
         List<Feedback> reverseDeviceList = new ArrayList<Feedback>();
         reverseDeviceList.addAll(this.feedbackDao.getFeedbackForDevice(device));
+
         return reverseDeviceList;
+    }
+
+    public void printDevices(List<Device> devices) {
+        for (int i = 0; i < devices.size(); i++) {
+
+        }
     }
 
     public void deleteDevice(Device device){

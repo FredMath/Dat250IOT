@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Fredrik Mathisen
+  Date: 24.10.2019
+  Time: 14:53
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Search devies</title>
+</h:head>
+
+<h:body onload="#{DeviceController.setTag(sensor)}">
+    <h:inputText id="searchDevice" value="#{DeviceController.tag}"></h:inputText>
+    <h:message for="searchDevice"></h:message>
+    <h:commandButton action="#{devices.setDevices(deviceController.getDevicesByTags())}" value="search" update="panel"></h:commandButton>
+
+    <h:panelGroup id="panel">
+    <h:form>
+        <ui:repeat value="#{devices.getDevices()}" var="device">
+            <h:outputText value="#{device}"></h:outputText>
+        </ui:repeat>
+    </h:form>
+    </h:panelGroup>
+
+
+</h:body>
+
+</html>
