@@ -49,7 +49,7 @@ public class Subscription {
     }
 
     @JsonbTransient
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private entities.Device Device;
 
     public entities.Device getDevice() {
@@ -61,7 +61,7 @@ public class Subscription {
     }
 
     @JsonbTransient
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private entities.User User;
 
     public entities.User getUser() {return User;}

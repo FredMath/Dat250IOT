@@ -34,7 +34,7 @@ public class Tag {
         this.description = description;
     }
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private entities.Device Device;
 
     public entities.Device getDevice() {

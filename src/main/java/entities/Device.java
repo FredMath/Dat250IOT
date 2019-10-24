@@ -96,7 +96,7 @@ private static final long serialVersionUID = 1;
                 '}';
     }
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private entities.User User;
 
     public entities.User getUser() {
@@ -108,7 +108,8 @@ private static final long serialVersionUID = 1;
     }
 
     @JsonbTransient
-    @OneToMany(mappedBy = "Device", fetch = FetchType.EAGER)
+    @XmlTransient
+    @OneToMany(mappedBy = "Device")
     private Collection<entities.Feedback> Feedback;
 
     public Collection<entities.Feedback> getFeedback() {
@@ -120,7 +121,8 @@ private static final long serialVersionUID = 1;
     }
 
     @JsonbTransient
-    @OneToMany(mappedBy = "Device", fetch = FetchType.EAGER)
+    @XmlTransient
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "Device")
     private Collection<Subscription> Subcriptions;
 
     public Collection<Subscription> getSubcriptions() {
@@ -132,7 +134,8 @@ private static final long serialVersionUID = 1;
     }
 
     @JsonbTransient
-    @OneToMany(mappedBy = "Device", fetch = FetchType.EAGER)
+    @XmlTransient
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "Device")
     private Collection<Tag> Tags;
 
     public Collection<Tag> getTags() {

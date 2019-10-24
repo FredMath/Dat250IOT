@@ -56,7 +56,7 @@ public class User {
     }
 
     @JsonbTransient
-    @OneToMany(mappedBy = "User", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "User")
     private Collection<Device> Devices;
 
     public Collection<Device> getDevices() {
@@ -68,8 +68,12 @@ public class User {
     }
 
     @JsonbTransient
-    @OneToMany(mappedBy = "User", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "User")
     private Collection<Subscription> Subscription;
+
+    public Collection<entities.Subscription> getSubscription() {
+        return Subscription;
+    }
 
     public Collection<Subscription> getSubscriptions(){return Subscription;}
 
