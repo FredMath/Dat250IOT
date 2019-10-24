@@ -38,6 +38,9 @@ public class DeviceController implements Serializable {
         return tag;
     }
 
+    public DeviceController() {
+    }
+
     public List<Device> getDevices() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
         reverseDeviceList.addAll(this.deviceDao.getAllDevices());
@@ -48,7 +51,7 @@ public class DeviceController implements Serializable {
     public List<Device> getUsersDevices() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
         String username = SessionUtils.getUserName();
-        reverseDeviceList.addAll(this.deviceDao.getUsersDevices(userDao.getUserByUsername(username)));
+        reverseDeviceList.addAll(this.deviceDao.getUsersDevices(this.userDao.getUserByUsername(username)));
         return reverseDeviceList;
     }
 
@@ -69,17 +72,11 @@ public class DeviceController implements Serializable {
         return reverseDeviceList;
     }
 
-    public void printDevices(List<Device> devices) {
-        for (int i = 0; i < devices.size(); i++) {
-
-        }
-    }
-
     public void deleteDevice(Device device){
-        deviceDao.deleteDevice(device);
+        this.deviceDao.deleteDevice(device);
     }
 
     public void changePower(Device device, boolean power){
-        deviceDao.changePower(device, power);
+        this.deviceDao.changePower(device, power);
     }
 }

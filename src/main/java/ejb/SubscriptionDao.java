@@ -30,12 +30,12 @@ public class SubscriptionDao {
 
     @SuppressWarnings("unchecked")
     public void Unsubscribe(Device device, User user) {
-        Query query = em.createQuery("DELETE FROM Subscriptions t WHERE t.device.id LIKE ?1 AND t.user_username LIKE ?2")
+        Query query = em.createQuery("DELETE FROM Subscription t WHERE t.Device.id LIKE ?1 AND t.User.Username LIKE ?2")
                 .setParameter(1, device.getId()).setParameter(2, user.getUsername());
     }
 
     public void changeStatus(Subscription subscription, int status){
-        Query query = em.createQuery("UPDATE Subscriptions t SET t.status = ?1 WHERE t.id LIKE ?2")
+        Query query = em.createQuery("UPDATE Subscription t SET t.status = ?1 WHERE t.id LIKE ?2")
                 .setParameter(1, status).setParameter(2, subscription.getId());
     }
 }

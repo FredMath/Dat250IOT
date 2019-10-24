@@ -15,18 +15,18 @@
       xmlns:c="http://java.sun.com/jsf/core">
 
 <h:head>
-    <title>Search devies</title>
+    <title>Search devices</title>
 </h:head>
 
-<h:body onload="#{DeviceController.setTag(sensor)}">
-    <h:inputText id="searchDevice" value="#{DeviceController.tag}"></h:inputText>
+<h:body>
+    <h:inputText id="searchDevice" value="#{deviceController.tag}"></h:inputText>
     <h:message for="searchDevice"></h:message>
-    <h:commandButton action="#{devices.setDevices(deviceController.getDevicesByTags())}" value="search" update="panel"></h:commandButton>
+    <h:commandButton action="#{devices.setDevices(deviceController.getDevicesByTags())}" value="search" update="@form"></h:commandButton>
 
     <h:panelGroup id="panel">
     <h:form>
-        <ui:repeat value="#{devices.getDevices()}" var="device">
-            <h:outputText value="#{device}"></h:outputText>
+        <ui:repeat value="#{devices.devices}" var="device">
+            <h:outputText value="#{device.toString()}"></h:outputText>
         </ui:repeat>
     </h:form>
     </h:panelGroup>
