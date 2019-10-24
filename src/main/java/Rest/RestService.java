@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.sql.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Path("/devices")
@@ -41,7 +42,6 @@ public class RestService extends Application {
     public Response getDevices() {
         //TypedQuery<Device> query = em.createNamedQuery(Device.FIND_ALL, Device.class);
         //Devices devices = new Devices(query.getResultList());
-
         return Response.ok(deviceDao.getAllDevices()).build();
     }
 
