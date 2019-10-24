@@ -17,16 +17,22 @@
 </h:head>
 
 <h:body>
+    <h1>Feedback screen</h1>
+    <!--  <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink> -->
+    <br/>
+    <br/>
     <h:form>
         <ui:repeat value="#{deviceController.usersDevices}" var="device">
             <h:outputText value="#{device.toString()}"></h:outputText>
-            <br></br>
             <h:form>
-                <ui:repeat value="#{deviceController.getFeedbackForDevice}" var="feedbacks"></ui:repeat>
+                <ui:repeat value="#{deviceController.getFeedbackForDevice(device)}" var="feedbacks">
+                    <h:outputText value="#{feedbacks.getComment}"></h:outputText>
+                    <h:outputText value="#{feedbacks.getDate}"></h:outputText>
+                    <h:outputText value="#{feedbacks.getUserName}"></h:outputText>
+                </ui:repeat>
             </h:form>
         </ui:repeat>
     </h:form>
-
 </h:body>
 
 </html>
