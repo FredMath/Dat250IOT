@@ -19,17 +19,18 @@ public class TagsDao {
 
     @SuppressWarnings("unchecked")
     public List<Device> getDevicesByTags(String tagString) {
-        Query query = em.createQuery("SELECT device_id FROM Tags t WHERE t.name LIKE :tagName")
+        Query query = em.createQuery("SELECT t.Device FROM Tag t WHERE t.name LIKE :tagName")
                 .setParameter("tagName", tagString);
         List<Device> device_id = new ArrayList<Device>();
         device_id = query.getResultList();
 
-        List<Device> devices = new ArrayList<Device>();
-        for(int i = 0; i < device_id.size(); i++){
-            Device d = em.find(Device.class, device_id.get(i));
-            devices.add(d);
-        }
-
-        return devices;
+//        List<Device> devices = new ArrayList<Device>();
+//        for(int i = 0; i < device_id.size(); i++){
+//            Device d = em.find(Device.class, device_id.get(i));
+//            devices.add(d);
+//        }
+//
+//        return devices;
+        return device_id;
     }
 }

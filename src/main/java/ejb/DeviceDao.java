@@ -49,7 +49,7 @@ public class DeviceDao {
 
     @SuppressWarnings("unchecked")
     public List<Device> getUsersDevices(User user) {
-        Query query = em.createQuery("SELECT t FROM Device t WHERE t.user_username LIKE :userName")
+        Query query = em.createQuery("SELECT t FROM Device t WHERE t.User.Username LIKE :userName")
                 .setParameter("userName", user.getUsername());
         List<Device> devices = new ArrayList<Device>();
         devices = query.getResultList();
@@ -57,7 +57,7 @@ public class DeviceDao {
     }
 
     public void deleteDevice(Device device) {
-        Query query = em.createQuery("DELETE FROM Device t WHERE t.device.id LIKE ?1")
+        Query query = em.createQuery("DELETE FROM Device t WHERE t.id LIKE ?1")
                 .setParameter(1, device.getId());
     }
 
