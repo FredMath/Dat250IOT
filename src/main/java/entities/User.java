@@ -4,12 +4,13 @@ import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @Table(name="Users")
 @XmlRootElement
-public class User {
+public class User implements Serializable {
     @TableGenerator(
             name = "yourTableGenerator",
             allocationSize = 1,

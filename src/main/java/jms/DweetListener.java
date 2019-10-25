@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 @MessageDriven(mappedName = "jms/dat250/Topic", activationConfig = {
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
-        @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "topicUser = 'dweet'")})
+        @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "topicSubscription = 'dweet'")})
 public class DweetListener implements MessageListener {
     @Override
     public void onMessage(Message message) {

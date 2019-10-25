@@ -5,8 +5,10 @@ import entities.Device;
 import entities.Subscription;
 import entities.User;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.jms.JMSException;
+import javax.inject.Inject;
+import javax.jms.*;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,8 +21,17 @@ public class SubscriptionDao {
     @PersistenceContext(unitName = "test")
     private EntityManager em;
 
+    @Inject
+    @JMSConnectionFactory("jms/dat250/ConnectionFactory")
+    @JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
+    private JMSContext context;
+
+    @Resource(lookup = "jms/dat250/Topic")
+    private Topic topic;
+
     public void persist(Subscription subscription) throws NamingException, JMSException {
         em.persist(subscription);
+        context.createProducer().setProperty("topicSubscription", "dweet").send(topic, subscription);
     }
 
     @SuppressWarnings("unchecked") //tror persist funker for subscribe?

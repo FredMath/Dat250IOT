@@ -5,12 +5,13 @@ import Utils.Status;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Table(name = "subscriptions")
 @XmlRootElement
-public class Subscription {
+public class Subscription implements Serializable {
     @TableGenerator(
             name = "yourTableGenerator",
             allocationSize = 1,
