@@ -61,8 +61,9 @@ public class DeviceDao {
                 .setParameter(1, device.getId());
     }
 
-    public void changePower(Device device, boolean newPower){
+    public void changePower(int deviceid, boolean newPower){
         Query query = em.createQuery("UPDATE Device t SET t.power = ?1 WHERE t.id LIKE ?2")
-                .setParameter(1, newPower).setParameter(2, device.getId());
+                .setParameter(1, newPower).setParameter(2, deviceid);
+        query.executeUpdate();
     }
 }

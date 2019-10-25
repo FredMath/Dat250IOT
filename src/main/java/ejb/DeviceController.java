@@ -3,12 +3,10 @@ package ejb;
 import Utils.SessionUtils;
 import entities.Device;
 import entities.Feedback;
-import entities.Tag;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
@@ -31,15 +29,16 @@ public class DeviceController implements Serializable {
     @EJB
     private FeedbackDao feedbackDao;
     private String tag;
+    private String deviceName;
+    private boolean power;
+    private int deviceId;
 
-    private List<Device> deviceList;
-
-    public void setTag(String tag) {
-        this.tag = tag;
+    public int getDeviceId() {
+        return deviceId;
     }
 
-    public String getTag() {
-        return tag;
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
     }
 
     public List<Device> getDeviceList() {
@@ -50,7 +49,40 @@ public class DeviceController implements Serializable {
         this.deviceList = deviceList;
     }
 
-    public DeviceController() {
+    private List<Device> deviceList;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public boolean isPower() {
+        return power;
+    }
+
+    public void setPower(boolean power) {
+        this.power = power;
+    }
+
+    public Device getBeanDevice() {
+        return beanDevice;
+    }
+
+    public void setBeanDevice(Device beanDevice) {
+        this.beanDevice = beanDevice;
+    }
+
+    private Device beanDevice;
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getTag() {
+        return tag;
     }
 
     public List<Device> getDevices() {
@@ -68,7 +100,7 @@ public class DeviceController implements Serializable {
     public List<Device> getUsersDevices() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
         String username = SessionUtils.getUserName();
-        reverseDeviceList.addAll(this.deviceDao.getUsersDevices(this.userDao.getUserByUsername(username)));
+        reverseDeviceList.addAll(this.deviceDao.getUsersDevices(userDao.getUserByUsername(username)));
         return reverseDeviceList;
     }
 
@@ -79,8 +111,6 @@ public class DeviceController implements Serializable {
     public List<Device> getDevicesByTags() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
         reverseDeviceList.addAll(this.tagsDao.getDevicesByTags(this.tag));
-        System.out.print(reverseDeviceList.size());
-        System.out.print(this.tag);
         this.deviceList = reverseDeviceList;
         return reverseDeviceList;
     }
@@ -92,11 +122,17 @@ public class DeviceController implements Serializable {
         return reverseDeviceList;
     }
 
-    public void deleteDevice(Device device){
-        this.deviceDao.deleteDevice(device);
+    public void printDevices(List<Device> devices) {
+        for (int i = 0; i < devices.size(); i++) {
+
+        }
     }
 
-    public void changePower(Device device, boolean power){
-        this.deviceDao.changePower(device, power);
+    public void deleteDevice(){
+        deviceDao.deleteDevice(beanDevice);
+    }
+
+    public void changePower(){
+        deviceDao.changePower(this.deviceId, this.power);
     }
 }
