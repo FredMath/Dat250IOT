@@ -9,18 +9,19 @@
         <class>entities.Subscription</class>
         <class>entities.Tag</class>
         <class>entities.User</class>
-        <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://data2.hib.no:5433/db2019_g11" />
-            <property name="javax.persistence.jdbc.user" value="g2019_11" />
-            <property name="javax.persistence.jdbc.password" value="hNQMyZ" />
-            <property name="javax.persistence.schema-generation.database.action" value="create"/>
-            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
-            <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
-            <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
-            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
-            <property name="eclipselink.logging.level" value="FINEST" />
-            <property name="eclipselink.logging.level.sql" value="FINEST" />
-        </properties>
+
+      <!-- <properties>
+           <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+           <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://data2.hib.no:5433/db2019_g11" />
+           <property name="javax.persistence.jdbc.user" value="g2019_11" />
+           <property name="javax.persistence.jdbc.password" value="hNQMyZ" />
+           <property name="javax.persistence.schema-generation.database.action" value="create"/>
+           <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+           <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
+           <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
+           <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+           <property name="eclipselink.logging.level" value="FINEST" />
+           <property name="eclipselink.logging.level.sql" value="FINEST" />
+       </properties>-->
     </persistence-unit>
 </persistence>

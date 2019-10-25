@@ -9,7 +9,18 @@
 <h:body>
     <h:form>
         <p>Welcome #{login.user}</p>
-        <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+        <h:commandLink action="#{login.logout()}" value="Logout"></h:commandLink>
+        <br>
+
+        </br>
+        <h:commandLink action="search" value="search devices"></h:commandLink>
+        <br></br>
+        <h:commandLink action="deviceScreen" value="Devices"></h:commandLink>
+        <br></br>
+        <h:commandLink action="feedback" value="Feedback"></h:commandLink>
+        <br></br>
+        <h:commandLink action="DAS" value="Das"></h:commandLink>
+
     </h:form>
 </h:body>
 </html>

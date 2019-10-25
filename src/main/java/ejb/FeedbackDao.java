@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
 @Stateless
 public class FeedbackDao {
 
-    @PersistenceUnit(unitName = "test")
+    @PersistenceContext(unitName = "test")
     private EntityManager em;
 
     public void persist(Feedback feedback) throws NamingException, JMSException {
@@ -25,7 +26,7 @@ public class FeedbackDao {
     }
 
     public List<Feedback> getFeedbackForDevice(Device device){
-        Query query = em.createQuery("SELECT t FROM Feedback t WHERE t.device_id LIKE :deviceid")
+        Query query = em.createQuery("SELECT t FROM Feedback t WHERE t.Device.id LIKE :deviceid")
                 .setParameter("deviceid", device.getId());
         List<Feedback> feedbackList = new ArrayList<Feedback>();
         feedbackList = query.getResultList();

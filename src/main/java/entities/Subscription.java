@@ -2,14 +2,16 @@ package entities;
 
 import Utils.Status;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Table(name = "subscriptions")
 @XmlRootElement
-public class Subscription {
+public class Subscription implements Serializable {
     @TableGenerator(
             name = "yourTableGenerator",
             allocationSize = 1,
@@ -47,7 +49,8 @@ public class Subscription {
         this.date = date;
     }
 
-    @ManyToOne(optional = false)
+    @JsonbTransient
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private entities.Device Device;
 
     public entities.Device getDevice() {
@@ -58,7 +61,8 @@ public class Subscription {
         Device = device;
     }
 
-    @ManyToOne(optional = false)
+    @JsonbTransient
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private entities.User User;
 
     public entities.User getUser() {return User;}

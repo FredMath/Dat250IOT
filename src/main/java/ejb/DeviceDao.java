@@ -17,18 +17,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
 public class DeviceDao {
 
-    @PersistenceUnit(unitName = "test")
+    @PersistenceContext(unitName = "test")
     private EntityManager em;
 
 
     public void persist(Device device) throws NamingException, JMSException {
         em.persist(device);
+    }
+
+    public Device getDevice(int id) {
+        Device device = em.find(Device.class, id);
+        if (device == null)
+            throw new NotFoundException();
+        return device;
     }
 
     @SuppressWarnings("unchecked")
@@ -41,7 +49,7 @@ public class DeviceDao {
 
     @SuppressWarnings("unchecked")
     public List<Device> getUsersDevices(User user) {
-        Query query = em.createQuery("SELECT t FROM Device t WHERE t.user_username LIKE :userName")
+        Query query = em.createQuery("SELECT t FROM Device t WHERE t.User.Username LIKE :userName")
                 .setParameter("userName", user.getUsername());
         List<Device> devices = new ArrayList<Device>();
         devices = query.getResultList();
@@ -49,12 +57,13 @@ public class DeviceDao {
     }
 
     public void deleteDevice(Device device) {
-        Query query = em.createQuery("DELETE FROM Device t WHERE t.device.id LIKE ?1")
+        Query query = em.createQuery("DELETE FROM Device t WHERE t.id LIKE ?1")
                 .setParameter(1, device.getId());
     }
 
-    public void changePower(Device device, boolean newPower){
+    public void changePower(int deviceid, boolean newPower){
         Query query = em.createQuery("UPDATE Device t SET t.power = ?1 WHERE t.id LIKE ?2")
-                .setParameter(1, newPower).setParameter(2, device.getId());
+                .setParameter(1, newPower).setParameter(2, deviceid);
+        query.executeUpdate();
     }
 }

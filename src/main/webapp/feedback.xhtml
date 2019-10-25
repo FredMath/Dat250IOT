@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: anja
+  Date: 24/10/2019
+  Time: 18:29
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Feedback Facelets</title>
+</h:head>
+
+<h:body>
+    <h1>Feedback screen</h1>
+    <br/>
+    <br/>
+    <h:form>
+        <ui:repeat value="#{deviceController.usersDevices}" var="dev">
+            <h:outputText value="#{dev.toString()}"></h:outputText>
+            <h:form>
+                <ui:repeat value="#{deviceController.getDevice(dev.id).feedback}" var="feedbacks">
+                    <h:outputText value="#{feedbacks.comment}"></h:outputText>
+                    <h:outputText value="#{feedbacks.date}"></h:outputText>
+                    <h:outputText value="#{feedbacks.userName}"></h:outputText>
+                </ui:repeat>
+            </h:form>
+        </ui:repeat>
+    </h:form>
+</h:body>
+
+</html>

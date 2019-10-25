@@ -1,13 +1,16 @@
 package entities;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
 @Table(name="Users")
 @XmlRootElement
-public class User {
+public class User implements Serializable {
     @TableGenerator(
             name = "yourTableGenerator",
             allocationSize = 1,
@@ -53,6 +56,7 @@ public class User {
         this.lastName = lastName;
     }
 
+    @JsonbTransient
     @OneToMany(mappedBy = "User")
     private Collection<Device> Devices;
 
@@ -64,8 +68,13 @@ public class User {
         Devices = devices;
     }
 
-    @OneToMany(mappedBy = "User")
+    @JsonbTransient
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "User")
     private Collection<Subscription> Subscription;
+
+    public Collection<entities.Subscription> getSubscription() {
+        return Subscription;
+    }
 
     public Collection<Subscription> getSubscriptions(){return Subscription;}
 
