@@ -60,6 +60,11 @@ public class DeviceController implements Serializable {
         return reverseDeviceList;
     }
 
+    public Device getDevice(int id) {
+        Device device = deviceDao.getDevice(id);
+        return device;
+    }
+
     public List<Device> getUsersDevices() {
         List<Device> reverseDeviceList = new ArrayList<Device>();
         String username = SessionUtils.getUserName();

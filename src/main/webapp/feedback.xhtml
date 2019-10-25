@@ -18,17 +18,16 @@
 
 <h:body>
     <h1>Feedback screen</h1>
-    <!--  <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink> -->
     <br/>
     <br/>
     <h:form>
-        <ui:repeat value="#{deviceController.usersDevices}" var="device">
-            <h:outputText value="#{device.toString()}"></h:outputText>
+        <ui:repeat value="#{deviceController.usersDevices}" var="dev">
+            <h:outputText value="#{dev.toString()}"></h:outputText>
             <h:form>
-                <ui:repeat value="#{deviceController.getFeedbackForDevice(device)}" var="feedbacks">
-                    <h:outputText value="#{feedbacks.getComment}"></h:outputText>
-                    <h:outputText value="#{feedbacks.getDate}"></h:outputText>
-                    <h:outputText value="#{feedbacks.getUserName}"></h:outputText>
+                <ui:repeat value="#{deviceController.getDevice(dev.id).feedback}" var="feedbacks">
+                    <h:outputText value="#{feedbacks.comment}"></h:outputText>
+                    <h:outputText value="#{feedbacks.date}"></h:outputText>
+                    <h:outputText value="#{feedbacks.userName}"></h:outputText>
                 </ui:repeat>
             </h:form>
         </ui:repeat>
